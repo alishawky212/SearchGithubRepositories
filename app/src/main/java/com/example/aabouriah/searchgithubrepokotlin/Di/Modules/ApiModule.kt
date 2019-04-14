@@ -1,6 +1,7 @@
 package com.example.aabouriah.searchgithubrepokotlin.Di.Modules
 
 import com.example.aabouriah.searchgithubrepokotlin.Domain.Network.SearchApi
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -20,7 +21,7 @@ class ApiModule {
                 .Builder()
                 .client(client)
                 .baseUrl("https://api.github.com/")
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }

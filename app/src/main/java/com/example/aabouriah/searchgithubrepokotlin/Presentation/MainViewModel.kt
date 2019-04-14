@@ -4,6 +4,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.example.aabouriah.searchgithubrepokotlin.Domain.Repositories.SearchContract
 import com.example.aabouriah.searchgithubrepokotlin.Entities.Items
+import com.example.aabouriah.searchgithubrepokotlin.Entities.ReposResponse
+import com.example.aabouriah.searchgithubrepokotlin.Entities.SearcheMainResponse
+import com.example.aabouriah.searchgithubrepokotlin.Utiles.DataResponse
+import com.example.aabouriah.searchgithubrepokotlin.Utiles.networkCall
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import java.util.concurrent.TimeUnit
@@ -35,4 +39,10 @@ class MainViewModel @Inject constructor(private val searchContract: SearchContra
                          }
          )
      }
+
+
+    fun makeSearchAsync(query:String)= networkCall<ReposResponse, List<Items>> {
+        client = searchContract.searchReposAsync(query)
+    }
+
 }
